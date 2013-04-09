@@ -1,11 +1,14 @@
 function [ proposta, avalvc ] = avaliacao(NITER, pastos, forrageiras)
-    proposta = randi(length(forrageiras), length(pastos), 1);
+    forrageirasLength = length(forrageiras);
+    pastosLength = length(pastos);
+    
+    proposta = randi(forrageirasLength, pastosLength, 1);
     avalvc = nota(pastos, forrageiras, proposta); 
     
     for ia = 1:NITER
         propostan = proposta;
         
-        ii = randi([1 length(pastos)],2,1);
+        ii = randi([1 pastosLength],2,1);
         propostan(ii(1)) = proposta(ii(2));
         propostan(ii(2)) = proposta(ii(1));
         
@@ -15,7 +18,6 @@ function [ proposta, avalvc ] = avaliacao(NITER, pastos, forrageiras)
             proposta = propostan;
             avalvc = avalvn;
         end
-        avalvc
     end
 end
 
